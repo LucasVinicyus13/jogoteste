@@ -2,6 +2,7 @@ html, body {
   margin: 0;
   height: 100%;
   background: #0b0f12;
+  overflow: hidden;
 }
 
 #game {
@@ -9,5 +10,118 @@ html, body {
   width: 100vw;
   height: 100vh;
   image-rendering: pixelated; /* look retrô */
-  cursor: none; /* só pra ficar “clean” */
+  cursor: crosshair;
+}
+
+/* ===== Diálogo do Ferreiro ===== */
+.dialogue {
+  position: fixed;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+  z-index: 10;
+  pointer-events: none; /* só os botões recebem clique (override abaixo) */
+}
+.dialogue.hidden { display: none; }
+
+.portrait {
+  height: 30vh;   /* 30% da altura da tela */
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 16px rgba(0,0,0,0.5));
+  pointer-events: auto;
+}
+
+.dialogue-box {
+  flex: 1;
+  height: 200px;
+  background: rgba(20,22,27,0.92);
+  border: 2px solid #2b2f3a;
+  border-radius: 12px;
+  color: #e7e9ee;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 14px 16px;
+  pointer-events: auto; /* permitir clique nos botões */
+}
+
+.lines .npc-name {
+  font: 700 14px ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  letter-spacing: .5px;
+  color: #7aa2ff;
+  text-transform: lowercase;
+  margin-bottom: 6px;
+}
+.lines .npc-text {
+  font: 600 16px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell;
+  color: #e7e9ee;
+  opacity: .95;
+}
+
+.options {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.opt {
+  background: linear-gradient(#2b6cff, #1e46b3);
+  border: 0;
+  color: #fff;
+  font: 600 14px ui-sans-serif, system-ui;
+  padding: 10px 14px;
+  border-radius: 10px;
+  box-shadow: 0 6px 0 #122c74;
+  transform: translateY(0);
+  transition: transform .05s ease, box-shadow .05s ease;
+  cursor: pointer;
+}
+.opt:active {
+  transform: translateY(2px);
+  box-shadow: 0 4px 0 #122c74;
+}
+
+/* ===== Popup ===== */
+.popup {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(0,0,0,.35);
+  z-index: 20;
+}
+.popup.hidden { display: none; }
+
+.popup-inner {
+  position: relative;
+  min-width: 320px;
+  max-width: min(90vw, 560px);
+  background: #14161b;
+  border: 2px solid #2b2f3a;
+  border-radius: 12px;
+  color: #e7e9ee;
+  padding: 22px 20px;
+  box-shadow: 0 24px 60px rgba(0,0,0,.6);
+}
+
+.popup-close {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 8px;
+  background: #2b2f3a;
+  color: #fff;
+  font-size: 20px;
+  line-height: 32px;
+  cursor: pointer;
+}
+.popup-msg {
+  font: 700 18px ui-sans-serif, system-ui;
+  text-align: center;
 }
