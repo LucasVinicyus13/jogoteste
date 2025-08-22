@@ -1,11 +1,13 @@
-body {
+html, body {
   margin: 0;
-  overflow: hidden;
-  background-color: #222;
+  height: 100%;
+  background: #0b0f12;
 }
-#gameCanvas {
+
+#game {
   display: block;
   width: 100vw;
   height: 100vh;
-  image-rendering: pixelated;
+  image-rendering: pixelated; /* look retrô */
+  cursor: none; /* só pra ficar “clean” */
 }
